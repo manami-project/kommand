@@ -18,11 +18,13 @@ private const val SUDO = "sudo"
  * @throws UnexpectedUsageOfSudo Is thrown if [CommandLineConfig.useSudo] is set to `false`, but first element of `command` is `sudo`.
  * @see CommandExecutor
  */
-public class JavaProcessBuilder(private val commandLineConfig: CommandLineConfig.()-> Unit = {}): CommandExecutor {
+public class JavaProcessBuilder(
+    public override var config: CommandLineConfig = CommandLineConfig(),
+): CommandExecutor {
+
+    public constructor(config: CommandLineConfig.()-> Unit): this(CommandLineConfig().apply(config))
 
     override fun executeCmd(command: List<String>): String {
-        val config = CommandLineConfig().apply(commandLineConfig)
-
         if (operatingSystem() !in setOf(MAC_OS, LINUX)) {
             throw UnsupportedOperatingSystemException
         }

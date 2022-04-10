@@ -11,6 +11,12 @@ import io.github.manamiproject.kommand.exceptions.UnsupportedOperatingSystemExce
 public interface CommandExecutor {
 
     /**
+     * Configuration for the [CommandExecutor] implementation
+     * @since 1.1.0
+     */
+    public var config: CommandLineConfig
+
+    /**
      * Execute a cli command.
      * @since 1.0.0
      * @param command A [List] containing the command as first element followed by the arguments and their values.

@@ -112,6 +112,24 @@ internal class JavaProcessBuilderTest {
         """.trimIndent())
     }
 
+    @Test
+    fun `config can be changed`() {
+        // given
+        val javaProcessBuilder = JavaProcessBuilder {
+            showCommandInOutput = true
+            dryRun = true
+        }
+        val command = listOf("echo", "this is a test")
+        javaProcessBuilder.executeCmd(command)
+
+        // when
+        javaProcessBuilder.config.showCommandInOutput = false
+
+        // then
+        assertThat(javaProcessBuilder.config.showCommandInOutput).isFalse()
+        assertThat(javaProcessBuilder.executeCmd(command)).isEmpty()
+    }
+
     @Nested
     @EnabledOnOs(LINUX, MAC)
     @DisabledIfEnvironmentVariable(named = "GITHUB_ACTIONS", matches = "true", disabledReason = "Cannot run on github actions")
