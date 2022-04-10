@@ -80,7 +80,7 @@ publishing {
             pom {
                 packaging = "jar"
                 name.set(projectName)
-                description.set("A generic wrapper for cli function calls.")
+                description.set("This library allows you to easily create kotlin-style wrappers for command line functions.")
                 url.set("https://github.com/$githubUsername/$projectName")
 
                 licenses {
