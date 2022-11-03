@@ -46,8 +46,8 @@ internal class JavaProcessBuilderTest {
         val command = listOf("sudo", "echo", "this is a test")
 
         // when
-        val result = assertThrows<UnexpectedUsageOfSudo>() {
-            javaProcessBuilder.executeCmd(command,)
+        val result = assertThrows<UnexpectedUsageOfSudo> {
+            javaProcessBuilder.executeCmd(command)
         }
 
         // then
@@ -142,7 +142,7 @@ internal class JavaProcessBuilderTest {
             val command = listOf("echo", "this is a test")
 
             // when
-            val result = javaProcessBuilder.executeCmd(command, )
+            val result = javaProcessBuilder.executeCmd(command)
 
             // then
             assertThat(result).isEqualTo("this is a test")
