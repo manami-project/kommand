@@ -1,4 +1,6 @@
-import Build_gradle.Versions.JUNIT_VERSION
+val jvmTarget = "21"
+val junitVersion = "5.9.2"
+
 
 plugins {
     kotlin("jvm") version "1.9.20"
@@ -23,20 +25,20 @@ dependencies {
 
     implementation(platform(kotlin("bom")))
 
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:$JUNIT_VERSION")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$JUNIT_VERSION")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
     testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
 kotlin {
     explicitApi()
-    jvmToolchain(Versions.JVM_TARGET.toInt())
+    jvmToolchain(jvmTarget.toInt())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions {
-        jvmTarget = Versions.JVM_TARGET
+        jvmTarget = jvmTarget
     }
 }
 
@@ -112,11 +114,6 @@ tasks.jacocoTestReport {
         xml.outputLocation.set(file("${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"))
     }
     dependsOn(allprojects.map { it.tasks.named<Test>("test") })
-}
-
-object Versions {
-    const val JVM_TARGET = "17"
-    const val JUNIT_VERSION = "5.9.2"
 }
 
 fun parameter(name: String, default: String = ""): String {
