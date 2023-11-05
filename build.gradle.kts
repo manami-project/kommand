@@ -1,4 +1,4 @@
-val junitVersion = "5.10.0"
+val junitVersion = "5.10.1"
 
 
 plugins {
@@ -26,7 +26,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.10.0")
+    testImplementation("org.junit.platform:junit-platform-launcher:1.10.1")
     testImplementation("org.assertj:assertj-core:3.24.2")
 }
 
