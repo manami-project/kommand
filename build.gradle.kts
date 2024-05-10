@@ -1,6 +1,3 @@
-val junitVersion = "5.10.2"
-
-
 plugins {
     kotlin("jvm") version "1.9.23"
     `maven-publish`
@@ -9,6 +6,9 @@ plugins {
     id("com.github.nbaztec.coveralls-jacoco") version "1.2.19"
 }
 
+group = "io.github.manamiproject"
+version = project.findProperty("release.version") as String? ?: ""
+
 val projectName = "kommand"
 val githubUsername = "manami-project"
 
@@ -16,18 +16,12 @@ repositories {
     mavenCentral()
 }
 
-group = "io.github.manamiproject"
-version = project.findProperty("release.version") as String? ?: ""
-
 dependencies {
-    api(kotlin("stdlib"))
-
-    implementation(platform(kotlin("bom")))
-
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testImplementation("org.junit.platform:junit-platform-launcher:1.10.2")
-    testImplementation("org.assertj:assertj-core:3.25.3")
+    api(libs.kotlin.stdlib)
+    testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.junit.platform.launcher)
+    testImplementation(libs.assertj.core)
 }
 
 kotlin {
@@ -46,6 +40,19 @@ tasks.withType<Test> {
     reports.html.required.set(false)
     reports.junitXml.required.set(true)
     maxParallelForks = Runtime.getRuntime().availableProcessors()
+}
+
+tasks.jacocoTestReport {
+    reports {
+        html.required.set(false)
+        xml.required.set(true)
+        xml.outputLocation.set(file("${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"))
+    }
+    dependsOn(allprojects.map { it.tasks.named<Test>("test") })
+}
+
+coverallsJacoco {
+    reportPath = "${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -100,19 +107,6 @@ publishing {
             }
         }
     }
-}
-
-coverallsJacoco {
-    reportPath = "${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"
-}
-
-tasks.jacocoTestReport {
-    reports {
-        html.required.set(false)
-        xml.required.set(true)
-        xml.outputLocation.set(file("${layout.buildDirectory}/reports/jacoco/test/jacocoFullReport.xml"))
-    }
-    dependsOn(allprojects.map { it.tasks.named<Test>("test") })
 }
 
 fun parameter(name: String, default: String = ""): String {
