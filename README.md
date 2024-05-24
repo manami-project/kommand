@@ -1,4 +1,4 @@
-![Build](https://github.com/manami-project/kommand/actions/workflows/build.yml/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/manami-project/kommand/badge.svg?branch=master)](https://coveralls.io/github/manami-project/kommand?branch=master) ![jdk21](https://img.shields.io/badge/jdk-21-informational)
+[![Tests](https://github.com/manami-project/kommand/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/manami-project/kommand/actions/workflows/tests.yml) [![codecov](https://codecov.io/gh/manami-project/kommand/graph/badge.svg?token=9K5ETTSUW3)](https://codecov.io/gh/manami-project/kommand) ![jdk21](https://img.shields.io/badge/jdk-21-informational)
 # kommand
 
 This library allows you to easily create kotlin-style wrappers for command line functions.
