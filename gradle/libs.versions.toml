@@ -3,6 +3,7 @@ assertj-core = "3.26.0"
 junit-jupiter = "5.10.3"
 platform-launcher = "1.10.3"
 kotlin = "2.0.0"
+kover = "0.8.2"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core" }
@@ -13,3 +14,4 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
