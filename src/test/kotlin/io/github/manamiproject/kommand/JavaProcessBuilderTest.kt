@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable
 import org.junit.jupiter.api.condition.EnabledOnOs
-import org.junit.jupiter.api.condition.OS.*
+import org.junit.jupiter.api.condition.OS.LINUX
+import org.junit.jupiter.api.condition.OS.MAC
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -199,6 +200,23 @@ internal class JavaProcessBuilderTest {
 
             // then
             assertThat(result).isInstanceOf(IncorrectPasswordAttemptException.javaClass)
+        }
+    }
+
+    @Nested
+    inner class CompanionObjectTests {
+
+        @Test
+        fun `instance property always returns same instance`() {
+            // given
+            val previous = JavaProcessBuilder.instance
+
+            // when
+            val result = JavaProcessBuilder.instance
+
+            // then
+            assertThat(result).isExactlyInstanceOf(JavaProcessBuilder::class.java)
+            assertThat(result===previous).isTrue()
         }
     }
 }
