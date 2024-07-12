@@ -104,4 +104,12 @@ public class JavaProcessBuilder(
             }
         }
     }
+
+    public companion object {
+        /**
+         * Singleton of [JavaProcessBuilder]
+         * @since 1.4.0
+         */
+        public val instance: JavaProcessBuilder by lazy { JavaProcessBuilder() }
+    }
 }
