@@ -3,7 +3,7 @@ assertj-core = "3.27.2"
 junit-jupiter = "5.11.4"
 platform-launcher = "1.11.4"
 kotlin = "2.1.0"
-kover = "0.9.0"
+kover = "0.9.1"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core" }
