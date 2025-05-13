@@ -2,7 +2,7 @@
 assertj-core = "3.27.3"
 junit-jupiter = "5.12.2"
 platform-launcher = "1.12.2"
-kotlin = "2.1.20"
+kotlin = "2.1.21"
 kover = "0.9.1"
 
 [libraries]
