@@ -1,7 +1,7 @@
 [versions]
 assertj-core = "3.27.3"
 junit-jupiter = "5.13.1"
-platform-launcher = "1.13.1"
+platform-launcher = "1.13.2"
 kotlin = "2.2.0"
 kover = "0.9.1"
 
