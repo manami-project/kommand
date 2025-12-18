@@ -13,11 +13,11 @@ jobs:
         uses: actions/checkout@v6
       - name: Extract release version
         run: echo "RELEASE_VERSION=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-      - name: Set up JDK 21
+      - name: Set up JDK 25
         uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
-          java-version: 21
+          java-version: 25
       - name: Set executable flag on gradlew
         run: chmod +x gradlew
       - name: Execute tests and upload release
